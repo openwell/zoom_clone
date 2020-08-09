@@ -27,6 +27,9 @@ io.on('connection', (socket) => {
     // so the thing about it ...if the id is different u will be send to different room
     socket.to(roomId).broadcast.emit('user-connected', userId);
     console.log('joined room');
+    socket.on('message', (message) => {
+      io.to(roomId).emit('create-message', message);
+    });
   });
 });
 

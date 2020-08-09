@@ -54,3 +54,18 @@ const addVideoStream = (video, stream) => {
   });
   videoGrid.append(video);
 };
+
+window.addEventListener('keydown', (e) => {
+  let text = document.getElementById('chat_message');
+  if (e.which == 13 && text.value.length !== 0) {
+    socket.emit('message', text.value);
+    console.log(text.value);
+    text.value = '';
+  }
+});
+socket.on('create-message', (msg) => {
+  console.log(msg, 'we');
+  const li = document.createElement('li')
+  li.append(msg)
+  document.getElementById('chats_message_list').appendChild(li)
+});

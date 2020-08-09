@@ -7,12 +7,11 @@ body {
   margin: 0 auto;
   width: 100vw;
   height: 100vh;
-  color: #fff;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen,
     Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 }
 .main {
-  background: #0e1a0b;
+  /* background: #0e1a0b; */
   display: flex;
   height: 100%;
 }
@@ -22,41 +21,52 @@ body {
   flex-direction: column;
   justify-content: space-between;
 }
-.main_right {
-  width: 20%;
-  border: 1px solid #fff;
-}
+
 #main_video {
   height: 100%;
 }
 .main_controls {
   width: 100%;
   height: 50px;
-  border: 1px solid #fff;
+  /* border: 1px solid #fff; */
   display: flex;
   justify-content: space-between;
+  padding: 10px;
+  background-color: #4a494f;
 }
 .main_controls_block {
   display: flex;
+  margin: 5px 0px;
+  color: #fff;
 }
-.main_controls_block div {
-  padding: 10px;
+.main_controls_block > div {
+  padding: 5px 10px;
   align-self: center;
   text-align: center;
+  margin: 5px 0px;
 }
-/* .leave_meeting {
-} */
+.main_controls_block > div:hover {
+  background-color: #f6f7f933;
+  border-radius: 5px;
+}
+.main_controls_block > .leave_meeting:hover {
+  background-color: #4a494f;
+  border-radius: 0px;
+}
+.main_controls_block small {
+  font-size: 12px;
+}
 .leave_meeting_text {
   color: #fff;
   padding: 8px 20px;
-  background: red;
+  background: #cc1d1d;
   border-radius: 10px;
 }
 #video-grid {
   display: flex;
   justify-content: space-around;
   align-items: center;
-  border: 1px solid #fff;
+  border: 1px solid #000;
   height: 100%;
   flex-wrap: wrap;
 }
@@ -64,12 +74,42 @@ video {
   height: 300px;
   width: 400px;
   object-fit: cover;
+  border: 1px solid #000;
 }
-
+.main_right {
+  width: 20%;
+  border: 1px solid #f2f2f7;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
 #main_header_chat {
   text-align: center;
   padding: 10px;
+  border-bottom: 1px solid #f2f2f7;
 }
-/* #main_header_chat h6{
-    text-align: center;
-  } */
+#main_header_chat p {
+  font-weight: 300;
+  font-size: 14px;
+}
+.chats_message_input {
+  height: 50px;
+  border: 1px solid #f2f2f7;
+}
+.chats_message_input input {
+  width: 100%;
+  padding: 10px;
+  border: 0;
+}
+.chats_window {
+  height: 100%;
+  border: 1px solid #f2f2f7;
+}
+#chats_message_list {
+  padding: 10px;
+}
+#chats_message_list li {
+  font-size: 12px;
+  list-style: none;
+  margin-bottom: 10px;
+}
