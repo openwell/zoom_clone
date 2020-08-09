@@ -6,6 +6,12 @@
     <link rel="stylesheet" href="styles.css" />
     <script src="/socket.io/socket.io.js"></script>
     <script src="https://unpkg.com/peerjs@1.3.1/dist/peerjs.min.js"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css"
+      integrity="sha512-1PKOgIY59xJ8Co8+NE6FZ+LOAZKjy+KY8iq0G4B3CyeY6wYHN3yt9PW0XpSriVlkMXe40PTKnXrLnZ9+fkDaog=="
+      crossorigin="anonymous"
+    />
     <title>Home</title>
   </head>
   <body>
@@ -14,11 +20,44 @@
         <div id="main_video">
           <div id="video-grid"></div>
         </div>
-        <div class="main_controls"></div>
+        <div class="main_controls">
+          <div class="main_controls_block">
+            <div>
+              <i class="fas fa-microphone"></i> <br />
+              <!-- microphone-slash -->
+              <small>Mute</small>
+            </div>
+            <div>
+              <i class="fas fa-video"> </i><br />
+              <!-- video-slash -->
+              <small>Stop Video</small>
+            </div>
+          </div>
+          <div class="main_controls_block">
+            <div>
+              <i class="fas fa-shield-alt"> </i><br />
+              <small>Security</small>
+            </div>
+            <div>
+              <i class="fas fa-comment-alt"> </i><br />
+              <small>Participant</small>
+            </div>
+            <div>
+              <i class="fas fa-shield-alt"> </i><br />
+              <small>Chat</small>
+            </div>
+          </div>
+          <div class="main_controls_block">
+            <div class="leave_meeting">
+              <p class="leave_meeting_text">End</p>
+              <!-- end meeting for all or leave meeting -->
+            </div>
+          </div>
+        </div>
       </div>
       <div class="main_right">
         <div id="main_header_chat">
-          <h6>Chat</h6>
+          <h5>Chat</h5>
         </div>
       </div>
     </div>
@@ -26,6 +65,11 @@
     <script>
       const ROOM_ID = '<%=roomId %>';
     </script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/js/all.min.js"
+      integrity="sha512-YSdqvJoZr83hj76AIVdOcvLWYMWzy6sJyIMic2aQz5kh2bPTd9dzY3NtdeEAzPp/PhgZqr4aJObB3ym/vsItMg=="
+      crossorigin="anonymous"
+    ></script>
     <script src="script.js"></script>
   </body>
 </html>
