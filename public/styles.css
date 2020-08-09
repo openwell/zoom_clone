@@ -101,9 +101,10 @@ video {
   padding: 10px;
   border: 0;
 }
-.chats_window {
+#chats_window {
   height: 100%;
   border: 1px solid #f2f2f7;
+  overflow-y: scroll;
 }
 #chats_message_list {
   padding: 10px;

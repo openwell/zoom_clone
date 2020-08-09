@@ -14,7 +14,7 @@ let myVideoStream;
 navigator.mediaDevices
   .getUserMedia({
     video: true,
-    audio: false,
+    audio: true,
   })
   .then((stream) => {
     myVideoStream = stream;
@@ -65,7 +65,60 @@ window.addEventListener('keydown', (e) => {
 });
 socket.on('create-message', (msg) => {
   console.log(msg, 'we');
-  const li = document.createElement('li')
-  li.append(msg)
-  document.getElementById('chats_message_list').appendChild(li)
+  const li = document.createElement('li');
+  li.append(msg);
+  document.getElementById('chats_message_list').appendChild(li);
+  const objDiv = document.getElementById('chats_window');
+  objDiv.scrollTop = objDiv.scrollHeight;
 });
+
+const muteUnmute = () => {
+  const enabled = myVideoStream.getAudioTracks()[0].enabled;
+  console.log(myVideoStream);
+  if (enabled) {
+    myVideoStream.getAudioTracks()[0].enabled = false;
+    setMuteButton(enabled);
+  } else {
+    setMuteButton(enabled);
+    myVideoStream.getAudioTracks()[0].enabled = true;
+  }
+};
+
+const setMuteButton = (state) => {
+  const setMute = document.getElementById('mute_button');
+  if (state) {
+    setMute.innerHTML = `<i class="fas fa-microphone-slash"></i> <br />
+    <small>Unmute</small>`;
+  } else {
+    setMute.innerHTML = `<i class="fas fa-microphone"></i> <br />
+      <small>Mute</small>`;
+  }
+};
+
+const stopPlayVideo = () => {
+  const enabled = myVideoStream.getVideoTracks()[0].enabled;
+  if (enabled) {
+    myVideoStream.getVideoTracks()[0].enabled = false;
+    setStopPlayVideoButton(enabled);
+  } else {
+    setStopPlayVideoButton(enabled);
+    myVideoStream.getVideoTracks()[0].enabled = true;
+  }
+};
+
+const setStopPlayVideoButton = (state) => {
+  const displayVideo = document.getElementById('video_button');
+  if (state) {
+    displayVideo.innerHTML = `<i class="fas fa-video-slash"> </i><br />
+    <small>Start Video</small>`;
+  } else {
+    displayVideo.innerHTML = `<i class="fas fa-video"> </i><br />
+    <small>Stop Video</small>`;
+  }
+};
+
+// user name on entering so as to have username
+//permission for video connected all the time
+// screen sharing
+// screen recording
+// private message

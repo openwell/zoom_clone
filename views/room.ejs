@@ -22,12 +22,12 @@
         </div>
         <div class="main_controls">
           <div class="main_controls_block">
-            <div>
+            <div onclick="muteUnmute()" id="mute_button">
               <i class="fas fa-microphone"></i> <br />
               <!-- microphone-slash -->
               <small>Mute</small>
             </div>
-            <div>
+            <div onclick="stopPlayVideo()" id="video_button">
               <i class="fas fa-video"> </i><br />
               <!-- video-slash -->
               <small>Stop Video</small>
@@ -59,7 +59,7 @@
         <div id="main_header_chat">
           <p>Chat</p>
         </div>
-        <div class="chats_window">
+        <div id="chats_window">
           <ul id="chats_message_list"></ul>
         </div>
         <div class="chats_message_input">
