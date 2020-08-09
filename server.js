@@ -32,7 +32,7 @@ io.on('connection', (socket) => {
     });
   });
 });
-
-server.listen(3030, () => {
+let port = process.env.PORT || 3030
+server.listen(port, () => {
   console.log('we live @ port 3030');
 });
