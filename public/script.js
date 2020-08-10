@@ -7,7 +7,7 @@ myVideo.muted = true;
 var peer = new Peer(undefined, {
   path: '/peerjs',
   host: '/',
-  port: 443 || '3030',
+  port: '3030' || 443,
 });
 
 let myVideoStream;
@@ -139,6 +139,8 @@ const setStopPlayVideoButton = (state) => {
 // private message
 // video resizing
 // showing establishing connection
+
+
 
 // document.querySelectorAll('video')[1].currentTime
 // since we have like 3 ids and no real way to differentiate when disconnected
