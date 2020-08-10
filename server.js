@@ -23,16 +23,31 @@ app.get('/:room', (req, res) => {
 
 io.on('connection', (socket) => {
   socket.on('join-room', (roomId, userId) => {
+    // console.log(socket.adapter.rooms);
+    // console.log(socket.adapter.sids);
     socket.join(roomId);
     // so the thing about it ...if the id is different u will be send to different room
     socket.to(roomId).broadcast.emit('user-connected', userId);
-    console.log('joined room');
+    let room = socket.adapter.rooms[`${roomId}`];
+    setTimeout(() => socket.to(roomId).emit('number_user', room), 1000);
     socket.on('message', (message) => {
       io.to(roomId).emit('create-message', message);
     });
+    // console.log(socket.id);
+  });
+  socket.on('number_user', (roomId) => {
+    let room = socket.adapter.rooms[`${roomId}`];
+    socket.to(roomId).emit('number_user', room);
+  });
+  socket.on('disconnect', function () {
+    // console.log(socket.id);
+    // console.log(socket.nsp.adapter.rooms);
+    // let num_users = socket.server.eio.clientsCount;
+    // socket.to(roomId).emit('number_user', num_users);
+    // not perfect how to identify no of ppl in a unique room
   });
 });
-let port = process.env.PORT || 3030
+let port = process.env.PORT || 3030;
 server.listen(port, () => {
-  console.log('we live @ port 3030');
+  console.log('we live @ port', port);
 });

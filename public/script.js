@@ -19,7 +19,6 @@ navigator.mediaDevices
   .then((stream) => {
     myVideoStream = stream;
     addVideoStream(myVideo, stream);
-
     peer.on('call', function (call) {
       call.answer(stream); // Answer the call with an A/V stream.
       const video = document.createElement('video');
@@ -34,7 +33,6 @@ navigator.mediaDevices
   });
 
 peer.on('open', (id) => {
-  console.log(id, 'open');
   socket.emit('join-room', ROOM_ID, id);
 });
 
@@ -44,10 +42,10 @@ const connectToNewUser = (userId, stream) => {
   call.on('stream', (userVideoStream) => {
     addVideoStream(video, userVideoStream);
   });
-  console.log('new user', userId);
 };
 
 const addVideoStream = (video, stream) => {
+  socket.emit('number_user', ROOM_ID);
   video.srcObject = stream;
   video.addEventListener('loadedmetadata', () => {
     video.play();
@@ -59,22 +57,39 @@ window.addEventListener('keydown', (e) => {
   let text = document.getElementById('chat_message');
   if (e.which == 13 && text.value.length !== 0) {
     socket.emit('message', text.value);
-    console.log(text.value);
     text.value = '';
   }
 });
 socket.on('create-message', (msg) => {
-  console.log(msg, 'we');
   const li = document.createElement('li');
   li.append(msg);
   document.getElementById('chats_message_list').appendChild(li);
   const objDiv = document.getElementById('chats_window');
   objDiv.scrollTop = objDiv.scrollHeight;
 });
+socket.on('number_user', (users) => {
+  const num_users = users.length;
+  const list = document.getElementsByTagName('video');
+  if (num_users == 1) {
+    Array.from(list).map((elem) => {
+      elem.style.height = '100%';
+      elem.style.width = '100%';
+    });
+  } else if (num_users == 2) {
+    Array.from(list).map((elem) => {
+      elem.style.height = '300px';
+      elem.style.width = '400px';
+    });
+  } else if (num_users > 2) {
+    Array.from(list).map((elem) => {
+      elem.style.height = '200px';
+      elem.style.width = '300px';
+    });
+  }
+});
 
 const muteUnmute = () => {
   const enabled = myVideoStream.getAudioTracks()[0].enabled;
-  console.log(myVideoStream);
   if (enabled) {
     myVideoStream.getAudioTracks()[0].enabled = false;
     setMuteButton(enabled);
@@ -118,7 +133,15 @@ const setStopPlayVideoButton = (state) => {
 };
 
 // user name on entering so as to have username
-//permission for video connected all the time
+// permission for video connected all the time
 // screen sharing
 // screen recording
 // private message
+// video resizing
+// showing establishing connection
+
+// document.querySelectorAll('video')[1].currentTime
+// since we have like 3 ids and no real way to differentiate when disconnected
+// we can listen for disconnect and find non active screens
+// else we have to be ale to attach an id to a stream video
+// socket id, room_id, peer_id, stream_id
