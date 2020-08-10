@@ -17,17 +17,18 @@
   <body>
     <div class="main">
       <div class="main_left">
+        <!-- VIDEOS -->
         <div id="main_video">
           <div id="video-grid"></div>
         </div>
         <div class="main_controls">
           <div class="main_controls_block">
-            <div>
+            <div onclick="muteUnmute()" id="mute_button">
               <i class="fas fa-microphone"></i> <br />
               <!-- microphone-slash -->
               <small>Mute</small>
             </div>
-            <div>
+            <div onclick="stopPlayVideo()" id="video_button">
               <i class="fas fa-video"> </i><br />
               <!-- video-slash -->
               <small>Stop Video</small>
@@ -39,11 +40,11 @@
               <small>Security</small>
             </div>
             <div>
-              <i class="fas fa-comment-alt"> </i><br />
+              <i class="fas fa-user-friends"> </i><br />
               <small>Participant</small>
             </div>
             <div>
-              <i class="fas fa-shield-alt"> </i><br />
+              <i class="fas fa-comment-alt"> </i><br />
               <small>Chat</small>
             </div>
           </div>
@@ -57,7 +58,18 @@
       </div>
       <div class="main_right">
         <div id="main_header_chat">
-          <h5>Chat</h5>
+          <p>Chat</p>
+        </div>
+        <div id="chats_window">
+          <ul id="chats_message_list"></ul>
+        </div>
+        <div class="chats_message_input">
+          <input
+            type="text"
+            name=""
+            id="chat_message"
+            placeholder="Type message here..."
+          />
         </div>
       </div>
     </div>
